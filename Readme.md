@@ -29,6 +29,10 @@ Go to http://localhost:3000 and add some server instance, rember the server id a
 
 ## Installation of agent 
 
+Firstly you need to launch bundler:
+
+``$ bundle``
+
 All settings of monitoring agent are stored at ``config/settings.yml`` so you need to edit it properly in order to initialize the agent.
 Example:
 
