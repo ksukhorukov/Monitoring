@@ -1,0 +1,4 @@
+
+server_id: 1
+api_url: http://localhost:3000/statistics
+api_key: 804e99dd81e196b078db19b9084b8a7df9438368

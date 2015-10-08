@@ -1,0 +1,57 @@
+<% unless @servers.empty? %>
+
+  <% unless @statistics.empty? %>
+    <div class="row">
+       <% server =  get_max_disk(@servers) %>
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Max Disk usage: <%= server.disk_max %></h3>
+        </div>
+        <div class="panel-body">
+          <%= link_to server.name, server_path(server) %>
+        </div>
+      </div>
+
+      <% server = get_max_cpu(@servers) %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Max CPU load: <%= server.cpu_max %> </h3>
+        </div>
+        <div class="panel-body">
+          <%= link_to server.name, server_path(server) %>
+        </div>
+      </div>
+
+      <% server = get_max_procs(@servers) %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Max processes running: <%= server.procs_max %></h3>
+        </div>
+        <div class="panel-body">
+          <%= link_to server.name, server_path(server) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <th>Name</th>
+    <th>Disk usage</th>
+    <th>CPU usage</th>
+    <th>Number of processes</th>
+    <th>Report</th>
+    <% @servers.each do |server| %>
+      <% unless server.statistics.last == nil %>
+        <tr>
+          <td><%= link_to server.name, server_path(server) %></td>
+          <td><%= server.disk %></td>
+          <td><%= server.cpu %></td>
+          <td><%= server.procs %></td>
+          <td><%= link_to 'Download', report_path("#{server.id}.pdf") %> <span class="glyphicon glyphicon-download"></span></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% else %>
+  <h2>Please connect one of your servers to the system using <%= link_to 'servers management', servers_path %></h2>
+<% end %>
